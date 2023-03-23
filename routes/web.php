@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\AemtliController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    /**
+     * Ämtli
+     */
+    Route::get('/aemtli', [AemtliController::class, 'index'])->name('aemtli.index');
+    Route::post('/aemtli/store', [AemtliController::class, 'store'])->name('aemtli.store');
+    Route::post('/aemtli/update', [AemtliController::class, 'update'])->name('aemtli.update');
+    Route::get('/aemtli/destroy/{id}', [AemtliController::class, 'destroy'])->name('aemtli.destroy');
 });
 
 require __DIR__.'/auth.php';
