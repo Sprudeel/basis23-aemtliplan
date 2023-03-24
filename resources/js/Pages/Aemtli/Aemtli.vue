@@ -1,6 +1,19 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
+import CreateAemtli from "@/Pages/Aemtli/partials/CreateAemtli.vue";
+
+const props = defineProps({
+    aemtlis: Object,
+});
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    // Then specify how you want your dates to be formatted
+    return new Intl.DateTimeFormat("default", { dateStyle: "long" }).format(
+        date
+    );
+}
 </script>
 
 <template>
@@ -22,16 +35,18 @@ import { Head } from "@inertiajs/vue3";
                         >
                             Ämtli
                         </h2>
-                        <v-btn prepend-icon="add" color="green">
-                            neues Ämtli
-                        </v-btn>
+                        <CreateAemtli />
                     </div>
 
-                    <div class="p-6 border m-4 rounded relative">
+                    <div
+                        class="p-6 border m-4 rounded relative"
+                        v-for="aemtli in aemtlis"
+                        :key="aemtli.id"
+                    >
                         <h2
                             class="font-semibold text-2xl text-gray-800 leading-tight"
                         >
-                            Abwaschen
+                            {{ aemtli.name }}
                         </h2>
                         <div
                             class="flex lg:justify-between flex-col lg:flex-row"
@@ -45,6 +60,11 @@ import { Head } from "@inertiajs/vue3";
                                 ><span class="text-xm text-slate-500"
                                     >letzter Wechsel:</span
                                 ></span
+                            >
+                            <span
+                                ><span class="text-xm text-slate-500"
+                                    >Erstellt: </span
+                                >{{ formatDate(aemtli.created_at) }}</span
                             >
                         </div>
                         <div class="flex gap-4 absolute top-6 right-6">
