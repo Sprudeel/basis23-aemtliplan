@@ -2,6 +2,8 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import CreateAemtli from "@/Pages/Aemtli/partials/CreateAemtli.vue";
+import EditAemtli from "@/Pages/Aemtli/partials/EditAemtli.vue";
+import DestroyAemtli from "@/Pages/Aemtli/partials/DestroyAemtli.vue";
 
 const props = defineProps({
     aemtlis: Object,
@@ -68,18 +70,8 @@ function formatDate(dateString) {
                             >
                         </div>
                         <div class="flex gap-4 absolute top-6 right-6">
-                            <v-icon
-                                icon="edit"
-                                color="blue"
-                                class="cursor-pointer"
-                                title="Ämtli bearbeiten"
-                            />
-                            <v-icon
-                                icon="delete_forever"
-                                color="red"
-                                class="cursor-pointer"
-                                title="Ämtli löschen"
-                            />
+                            <EditAemtli :aemtli="aemtli" />
+                            <DestroyAemtli :aemtli="aemtli" />
                         </div>
                     </div>
 

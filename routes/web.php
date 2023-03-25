@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/aemtli', [AemtliController::class, 'index'])->name('aemtli.index');
     Route::post('/aemtli/store', [AemtliController::class, 'store'])->name('aemtli.store');
     Route::post('/aemtli/update', [AemtliController::class, 'update'])->name('aemtli.update');
-    Route::get('/aemtli/destroy/{id}', [AemtliController::class, 'destroy'])->name('aemtli.destroy');
+    Route::post('/aemtli/destroy/{id}', [AemtliController::class, 'destroy'])->name('aemtli.destroy');
 });
 
 require __DIR__.'/auth.php';
