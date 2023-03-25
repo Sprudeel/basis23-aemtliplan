@@ -44,8 +44,8 @@ const showingNavigationDropdown = ref(false);
                                     Ämtli
                                 </NavLink>
                                 <NavLink
-                                    :href="route('dashboard')"
-                                    :active="route().current('dashboard')"
+                                    :href="route('group.index')"
+                                    :active="route().current('group.index')"
                                 >
                                     Gruppen
                                 </NavLink>
@@ -163,8 +163,8 @@ const showingNavigationDropdown = ref(false);
                             Ämtli
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            :href="route('dashboard')"
-                            :active="route().current('dashboard')"
+                            :href="route('group.index')"
+                            :active="route().current('group.index')"
                         >
                             Gruppen
                         </ResponsiveNavLink>

@@ -14,10 +14,10 @@ class Group extends Model
     protected $fillable = ['name', 'aemtli'];
 
     public function aemtli(): BelongsTo {
-        return $this->belongsTo(Aemtli::class);
+        return $this->belongsTo(Aemtli::class, 'aemtli', 'id');
     }
 
     public function participants(): HasMany {
-        return $this->hasMany(Participant::class);
+        return $this->hasMany(Participant::class, 'group', 'id');
     }
 }

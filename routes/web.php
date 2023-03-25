@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AemtliController;
+use App\Http\Controllers\GroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/aemtli/store', [AemtliController::class, 'store'])->name('aemtli.store');
     Route::post('/aemtli/update', [AemtliController::class, 'update'])->name('aemtli.update');
     Route::post('/aemtli/destroy/{id}', [AemtliController::class, 'destroy'])->name('aemtli.destroy');
+
+     /**
+     * Groups
+     */
+    Route::get('/groups', [GroupController::class, 'index'])->name('group.index');
+    Route::post('/group/store', [GroupController::class, 'store'])->name('group.store');
+    Route::post('/group/update', [GroupController::class, 'update'])->name('group.update');
+    Route::post('/group/destroy/{id}', [GroupController::class, 'destroy'])->name('group.destroy');
 });
 
 require __DIR__.'/auth.php';
