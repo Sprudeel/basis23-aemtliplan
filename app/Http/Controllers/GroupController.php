@@ -19,8 +19,8 @@ class GroupController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'participants' => 'required',
+            'name' => 'required|string|max:255|unique:App\Models\Group,name',
+            'participants' => 'required|array|min:1',
         ]);
 
         $group = Group::create([
@@ -33,6 +33,37 @@ class GroupController extends Controller
                 'group' => $group->id,
             ]);
         }
+
+        return redirect()->back();
+    }
+
+    public function update(Request $request) {
+        $request->validate([
+            'id' => 'required',
+            'name' => 'required|string|max:255|unique:App\Models\Group,name',
+            'participants' => 'required|array|min:1',
+        ]);
+
+        $group = Group::where('id', $request->id)->update([
+            'name' => $request->name,
+        ]);
+
+        $delete = Participant::where('group', $request->id)->delete();
+
+        foreach($request->participants as $participant) {
+            Participant::create([
+                'name' => $participant,
+                'group' => $request->id,
+            ]);
+        }
+        return redirect()->back();
+    }
+
+    public function destroy(Request $request) {
+        $group = Group::find($request->id);
+        $group->delete();
+
+        $delete = Participant::where('group', $request->id)->delete();
 
         return redirect()->back();
     }
