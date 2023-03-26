@@ -13,6 +13,6 @@ class Aemtli extends Model
     protected $fillable = ['name'];
 
     public function group(): HasOne {
-        return $this->hasOne(Group::class);
+        return $this->hasOne(Group::class, 'id', 'group');
     }
 }

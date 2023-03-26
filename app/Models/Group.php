@@ -14,7 +14,7 @@ class Group extends Model
     protected $fillable = ['name', 'aemtli'];
 
     public function aemtli(): BelongsTo {
-        return $this->belongsTo(Aemtli::class, 'aemtli', 'id');
+        return $this->belongsTo(Aemtli::class, 'id', 'group');
     }
 
     public function participants(): HasMany {
