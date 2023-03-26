@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Aemtli;
+use App\Models\Group;
 
 class AemtliController extends Controller
 {
@@ -17,7 +18,7 @@ class AemtliController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:App\Models\Aemtli,name',
         ]);
 
         $aemtli = Aemtli::create([
@@ -30,7 +31,7 @@ class AemtliController extends Controller
     public function update(Request $request) {
         $request->validate([
             'id' => 'required',
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:App\Models\Aemtli,name',
         ]);
 
         $aemtli = Aemtli::where('id', $request->id)->update([
@@ -45,5 +46,13 @@ class AemtliController extends Controller
         $aemtli->delete();
 
         return redirect()->back();
+    }
+
+    public function change(Request $request) {
+        $group = Group::where('name', $request->group)->first() ? Group::where('name', $request->group)->first()->id : 0;
+
+        $aemtli = Aemtli::where('name', $request->aemtli)->update([
+            'group' => $group,
+        ]);
     }
 }
