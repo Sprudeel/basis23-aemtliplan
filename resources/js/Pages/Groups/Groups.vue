@@ -2,8 +2,8 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import CreateGroup from "@/Pages/Groups/partials/CreateGroup.vue";
-import EditAemtli from "@/Pages/Aemtli/partials/EditAemtli.vue";
-import DestroyAemtli from "@/Pages/Aemtli/partials/DestroyAemtli.vue";
+import EditGroup from "@/Pages/Groups/partials/EditGroup.vue";
+import DestroyGroup from "@/Pages/Groups/partials/DestroyGroup.vue";
 
 const props = defineProps({
     groups: Object,
@@ -71,7 +71,10 @@ function formatDate(dateString) {
                                 >{{ formatDate(group.created_at) }}</span
                             >
                         </div>
-                        <div class="flex gap-4 absolute top-6 right-6"></div>
+                        <div class="flex gap-4 absolute top-6 right-6">
+                            <EditGroup :group="group" />
+                            <DestroyGroup :group="group" />
+                        </div>
                     </div>
 
                     <div class="p-6 m-4"></div>

@@ -4,11 +4,25 @@ import { useForm } from "@inertiajs/vue3";
 import InputError from "@/Components/InputError.vue";
 import { ref } from "vue";
 
-const creatingNewGroup = ref(false);
+const editingGroup = ref(false);
+const nameInput = ref(null);
 
-const createNewGroup = () => {
-    creatingNewGroup.value = true;
+const editGroup = () => {
+    editingGroup.value = true;
 };
+
+const props = defineProps({
+    group: Object,
+});
+
+function loadParticipants(participants) {
+    const temp = [];
+    for (let i = 0; i < participants.length; i++) {
+        temp.push(participants[i].name);
+    }
+
+    return temp;
+}
 
 const newParticipant = () => {
     form.participants.push("");
@@ -17,13 +31,15 @@ const newParticipant = () => {
 function deleteParticipant(index) {
     form.participants.splice(index, 1);
 }
+
 const form = useForm({
-    name: "",
-    participants: [],
+    id: props.group.id,
+    name: props.group.name,
+    participants: loadParticipants(props.group.participants),
 });
 
-const createGroup = () => {
-    form.post(route("group.store"), {
+const updateGroup = () => {
+    form.post(route("group.update"), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onFinish: () => form.reset(),
@@ -31,26 +47,29 @@ const createGroup = () => {
 };
 
 const closeModal = () => {
-    creatingNewGroup.value = false;
+    editingGroup.value = false;
 
-    form.reset();
+    props.group.name = form.name;
 };
 </script>
 
 <template>
-    <v-btn prepend-icon="add" color="green" @click="createNewGroup">
-        neue Gruppe
-    </v-btn>
+    <v-icon
+        icon="edit"
+        color="blue"
+        class="cursor-pointer"
+        title="Gruppe bearbeiten"
+        @click="editGroup"
+    />
 
-    <Modal :show="creatingNewGroup" @close="closeModal">
+    <Modal :show="editingGroup" @close="closeModal">
         <div class="p-6">
             <h2 class="text-lg font-bold text-gray-900">
-                Erstelle eine neue Gruppe
+                Bearbeite eine Gruppe
             </h2>
 
             <p class="mt-1 mb-4 text-sm text-gray-600">
-                Bei der Erstellung einer Gruppe kannst du dieser einen tollen
-                Namen geben und die Mitglieder hinzufügen!
+                Bearbeite hier den Namen und die Mitglieder einer Gruppe!
             </p>
 
             <v-text-field
@@ -75,7 +94,6 @@ const closeModal = () => {
                     @click:append="deleteParticipant(index)"
                 ></v-text-field>
             </div>
-            <InputError :message="form.errors.participants" class="mt-2" />
 
             <v-btn
                 size="small"
@@ -95,7 +113,7 @@ const closeModal = () => {
                     color="green"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
-                    @click="createGroup"
+                    @click="updateGroup"
                 >
                     Erstellen
                 </v-btn>

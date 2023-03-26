@@ -20,6 +20,7 @@ const props = defineProps({
 const form = useForm({
     id: props.aemtli.id,
     name: props.aemtli.name,
+    group: props.aemtli.group,
 });
 
 const updateAemtli = () => {
