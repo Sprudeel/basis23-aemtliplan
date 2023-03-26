@@ -12,6 +12,5 @@ class GroupSeeder extends Seeder
      */
     public function run(): void
     {
-        //
     }
 }
