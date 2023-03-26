@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AemtliController;
 use App\Http\Controllers\GroupController;
+use App\Models\Aemtli;
+use App\Models\Group;
+use App\Models\Participant;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +31,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+            'groups' => Group::with('participants')->orderBy('created_at', 'desc')->get(),
+            'aemtlis' => Aemtli::with('group')->orderBy('created_at', 'desc')->get(),
+        ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -52,6 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/group/store', [GroupController::class, 'store'])->name('group.store');
     Route::post('/group/update', [GroupController::class, 'update'])->name('group.update');
     Route::post('/group/destroy/{id}', [GroupController::class, 'destroy'])->name('group.destroy');
+
+    Route::post('aemtli/change', [AemtliController::class, 'change'])->name('aemtli.change');
+
 });
 
 require __DIR__.'/auth.php';
