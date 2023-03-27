@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/group/destroy/{id}', [GroupController::class, 'destroy'])->name('group.destroy');
 
     Route::post('aemtli/change', [AemtliController::class, 'change'])->name('aemtli.change');
+    Route::post('aemtli/rotate', [AemtliController::class, 'rotate'])->name('aemtli.rotate');
 
 });
 

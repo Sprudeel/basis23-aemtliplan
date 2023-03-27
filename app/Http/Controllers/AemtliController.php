@@ -55,4 +55,14 @@ class AemtliController extends Controller
             'group' => $group,
         ]);
     }
+
+    public function rotate(Request $request) {
+        foreach ($request->rotation as $rotation) {
+            Aemtli::where('id', $rotation['id'])->update([
+                'group' => $rotation['new_group']['id'],
+            ]);
+        }
+        return redirect(route('dashboard'));
+    }
+    
 }

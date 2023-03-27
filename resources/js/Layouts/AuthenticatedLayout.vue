@@ -208,6 +208,19 @@ const showingNavigationDropdown = ref(false);
             <main>
                 <slot />
             </main>
+            <div
+                class="bg-slate-800 p-6 flex justify-center text-white text-lg"
+            >
+                online Ämtliplan erstellt durch
+                <a
+                    href="https://www.github.com/Sprudeel"
+                    target="__blank"
+                    class="font-bold mx-2"
+                >
+                    Sprudel
+                </a>
+                für den Basiskurs 2023 Pfadistufe der AuRe1
+            </div>
         </div>
     </div>
 </template>
