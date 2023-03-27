@@ -2,22 +2,29 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { useForm } from "@inertiajs/vue3";
 import { Head } from "@inertiajs/vue3";
+import RotateAemtli from "@/Pages/Aemtli/partials/RotateAemtli.vue";
+import { ref } from "vue";
 
 const props = defineProps({
     aemtlis: Object,
     groups: Object,
 });
 
+const updateRotation = ref(0);
+
 const form = useForm({
     aemtli: "",
     group: "",
 });
 
-for (let i = 0; i < props.aemtlis.length; i++) {
-    if (props.aemtlis[i].group === null) {
-        props.aemtlis[i].group = { name: undefined };
+function tempModel() {
+    for (let i = 0; i < props.aemtlis.length; i++) {
+        props.aemtlis[i].temp = props.aemtlis[i].group
+            ? props.aemtlis[i].group.name
+            : undefined;
     }
 }
+tempModel();
 
 function getGroups(groups) {
     const temp = [];
@@ -26,6 +33,7 @@ function getGroups(groups) {
     }
     return temp;
 }
+
 const availableGroups = getGroups(props.groups);
 
 function changeGroup(group, aemtli) {
@@ -34,13 +42,7 @@ function changeGroup(group, aemtli) {
 
     form.post(route("aemtli.change"), {
         preserveScroll: true,
-        onSuccess: () => {
-            for (let i = 0; i < props.aemtlis.length; i++) {
-                if (props.aemtlis[i].group === null) {
-                    props.aemtlis[i].group = { name: undefined };
-                }
-            }
-        },
+        onFinish: () => tempModel(),
     });
 }
 </script>
@@ -58,9 +60,16 @@ function changeGroup(group, aemtli) {
                         Zuteilung Gruppen & Ämtli
                     </h2>
 
+                    <div class="flex justify-end">
+                        <RotateAemtli
+                            :key="updateRotation.value"
+                            :aemtlis="props.aemtlis"
+                        />
+                    </div>
+
                     <div
                         v-for="aemtli in props.aemtlis"
-                        class="border rounded p-6"
+                        class="border rounded p-6 mx-2 my-4"
                     >
                         <h2 class="text-xl text-slate-600 mb-4">
                             Ämtli:
@@ -70,10 +79,12 @@ function changeGroup(group, aemtli) {
                         </h2>
 
                         <v-select
-                            v-model="aemtli.group.name"
+                            v-model="aemtli.temp"
                             :items="availableGroups"
                             @update:modelValue="
-                                changeGroup(aemtli.group, aemtli.name)
+                                changeGroup(aemtli.temp, aemtli.name);
+                                tempModel();
+                                updateRotation += 1;
                             "
                             clearable
                             label="Gruppe"
