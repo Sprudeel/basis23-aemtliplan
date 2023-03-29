@@ -15,6 +15,7 @@ const createNewAemtli = () => {
 
 const form = useForm({
     name: "",
+    component: "",
 });
 
 const createAemtli = () => {
@@ -56,6 +57,13 @@ const closeModal = () => {
                 required
             ></v-text-field>
             <InputError :message="form.errors.name" class="mt-2" />
+
+            <v-text-field
+                v-model="form.component"
+                label="Component"
+                required
+            ></v-text-field>
+            <InputError :message="form.component.name" class="mt-2" />
 
             <div class="flex justify-end gap-6">
                 <v-btn prepend-icon="cancel" color="grey" @click="closeModal">

@@ -55,18 +55,34 @@ function formatDate(dateString) {
                         >
                             <span
                                 ><span class="text-xm text-slate-500"
-                                    >derzeitige Gruppe:</span
-                                ></span
+                                    >derzeitige Gruppe:
+                                    <span
+                                        class="text-black"
+                                        v-if="aemtli.group"
+                                        >{{ aemtli.group.name }}</span
+                                    >
+                                    <span class="text-black" v-else
+                                        >keine Gruppe</span
+                                    >
+                                </span></span
                             >
                             <span
                                 ><span class="text-xm text-slate-500"
-                                    >letzter Wechsel:</span
-                                ></span
+                                    >Component:
+                                    <span
+                                        class="text-black"
+                                        v-if="aemtli.component"
+                                        >{{ aemtli.component }}</span
+                                    >
+                                    <span class="text-black" v-else
+                                        >kein Component</span
+                                    >
+                                </span></span
                             >
                             <span
                                 ><span class="text-xm text-slate-500"
-                                    >Erstellt: </span
-                                >{{ formatDate(aemtli.created_at) }}</span
+                                    >letzter Wechsel: </span
+                                >{{ formatDate(aemtli.updated_at) }}</span
                             >
                         </div>
                         <div class="flex gap-4 absolute top-6 right-6">

@@ -12,17 +12,19 @@ class AemtliController extends Controller
 {
     public function index() {
         return Inertia::render('Aemtli/Aemtli', [
-            'aemtlis' => Aemtli::all(),
+            'aemtlis' => Aemtli::with('group.participants')->get(),
         ]);
     }
 
     public function store(Request $request) {
         $request->validate([
             'name' => 'required|string|max:255|unique:App\Models\Aemtli,name',
+            'component' => 'required|string|max:255|unique:App\Models\Aemtli,component',
         ]);
 
         $aemtli = Aemtli::create([
             'name' => $request->name,
+            'component' => $request->component,
         ]);
 
         return redirect(route('aemtli.index'));
@@ -31,11 +33,13 @@ class AemtliController extends Controller
     public function update(Request $request) {
         $request->validate([
             'id' => 'required',
-            'name' => 'required|string|max:255|unique:App\Models\Aemtli,name',
+            'name' => 'required|string|max:255',
+            'component' => 'required|string|max:255',
         ]);
 
         $aemtli = Aemtli::where('id', $request->id)->update([
             'name' => $request->name,
+            'component' => $request->component,
         ]);
 
         return redirect()->back();

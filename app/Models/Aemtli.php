@@ -10,7 +10,7 @@ class Aemtli extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'component'];
 
     public function group(): HasOne {
         return $this->hasOne(Group::class, 'id', 'group');

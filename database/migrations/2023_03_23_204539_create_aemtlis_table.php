@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('aemtlis', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('component')->nullable();
             $table->foreignId('group')->default(0);
             $table->timestamps();
         });
