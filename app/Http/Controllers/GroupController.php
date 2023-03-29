@@ -40,7 +40,7 @@ class GroupController extends Controller
     public function update(Request $request) {
         $request->validate([
             'id' => 'required',
-            'name' => 'required|string|max:255|unique:App\Models\Group,name',
+            'name' => 'required|string|max:255',
             'participants' => 'required|array|min:1',
         ]);
 
