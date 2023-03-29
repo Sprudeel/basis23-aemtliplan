@@ -46,16 +46,20 @@ function formatDate(dateString) {
                         :key="group.id"
                     >
                         <h2
-                            class="font-semibold text-2xl text-gray-800 leading-tight"
+                            class="font-semibold text-2xl mb-2 text-gray-800 leading-tight"
                         >
                             {{ group.name }}
                         </h2>
                         <div class="flex flex-col">
                             <span
                                 ><span class="text-xm text-slate-500"
-                                    >Ämtli:</span
-                                ></span
-                            >
+                                    >Ämtli:
+                                </span>
+                                <span v-if="group.aemtli">
+                                    {{ group.aemtli.name }}</span
+                                >
+                                <span v-else> kein Ämtli zugeteilt</span>
+                            </span>
 
                             <div>
                                 <span class="text-xm text-slate-500"
