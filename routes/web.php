@@ -23,12 +23,14 @@ use App\Models\Participant;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'abwaschen' => Aemtli::where('component', 'abwaschen')->with('group.participants')->first(),
+        'putzen' => Aemtli::where('component', 'putzen')->with('group.participants')->first(), 
+        'wc' => Aemtli::where('component', 'wc')->with('group.participants')->first(), 
+        'joker_1' => Aemtli::where('component', 'joker_1')->with('group.participants')->first(), 
+        'joker_2' => Aemtli::where('component', 'joker_2')->with('group.participants')->first(), 
+        'joker_3' => Aemtli::where('component', 'joker_3')->with('group.participants')->first(), 
     ]);
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
