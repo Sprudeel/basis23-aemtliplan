@@ -2,13 +2,13 @@
 import { Head, Link } from "@inertiajs/vue3";
 import Abwaschen from "@/Components/aemtlis/Abwaschen.vue";
 import Putzen from "@/Components/aemtlis/Putzen.vue";
-import WC from "@/Components/aemtlis/WC.vue";
+import Tischen from "@/Components/aemtlis/Tischen.vue";
 import Joker from "@/Components/aemtlis/Joker.vue";
 
 const props = defineProps({
     abwaschen: Object,
     putzen: Object,
-    wc: Object,
+    tischen: Object,
     joker_1: Object,
     joker_2: Object,
     joker_3: Object,
@@ -22,7 +22,9 @@ const putzen_group = props.putzen
     ? props.putzen.group
     : "keine Gruppe zugeteilt";
 
-const wc_group = props.wc ? props.wc.group : "keine Gruppe zugeteilt";
+const tischen_group = props.tischen
+    ? props.tischen.group
+    : "keine Gruppe zugeteilt";
 
 const joker1_group = props.joker_1
     ? props.joker_1.group
@@ -50,7 +52,7 @@ const joker3_group = props.joker_3
             <Joker :group="joker3_group" :id="3" />
             <Putzen class="self-end" :group="putzen_group" />
             <Abwaschen class="self-end" :group="abwaschen_group" />
-            <WC class="self-end" :group="wc_group" />
+            <Tischen class="self-end" :group="tischen_group" />
         </div>
     </div>
 </template>

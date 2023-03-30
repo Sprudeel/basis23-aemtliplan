@@ -1,19 +1,19 @@
 <script setup>
-import WC from "@/Components/svg/WC.vue";
+import Tischen from "@/Components/svg/Tischen.vue";
 
 const props = defineProps({
     group: Object,
 });
 
 function animate() {
-    const element = document.getElementById("wc_animate");
+    const element = document.getElementById("tischen_animate");
     element.classList.add("woosh");
 }
 </script>
 
 <template>
     <div class="m-4 relative">
-        <div id="wc_animate" class="mb-4 bg opacity-0 p-2">
+        <div id="tischen_animate" class="mb-4 bg opacity-0 p-2">
             <div v-if="group.name">
                 <p class="font-bold">{{ group.name }}</p>
                 <p
@@ -25,7 +25,7 @@ function animate() {
             </div>
             <div v-else class="font-bold">{{ group }}</div>
         </div>
-        <WC class="mx-auto" @click="animate()" />
+        <Tischen class="mx-auto" @click="animate()" />
     </div>
 </template>
 
