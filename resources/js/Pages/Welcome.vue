@@ -42,7 +42,7 @@ const joker3_group = props.joker_3
 
     <div
         id="scrollbar"
-        class="bg h-screen top-0 left-0 bottom-0 overflow-x-scroll overflow-y-hidden"
+        class="bg h-screen top-0 left-0 bottom-0 md:overflow-x-scroll overflow-y-hidden"
     >
         <div class="h-screen min-w-max grid grid-cols-3 grid-rows-2 gap-4 p-8">
             <Joker :group="joker1_group" :id="1" />
