@@ -40,8 +40,11 @@ const joker3_group = props.joker_3
 <template>
     <Head title="Ämtliplan" />
 
-    <div class="bg w-full h-screen absolute top-0 left-0 bottom-0">
-        <div class="h-screen grid grid-cols-3 grid-rows-2 gap-4 p-8">
+    <div
+        id="scrollbar"
+        class="bg h-screen top-0 left-0 bottom-0 overflow-x-scroll overflow-y-hidden"
+    >
+        <div class="h-screen min-w-max grid grid-cols-3 grid-rows-2 gap-4 p-8">
             <Joker :group="joker1_group" :id="1" />
             <Joker :group="joker2_group" :id="2" />
             <Joker :group="joker3_group" :id="3" />
@@ -58,5 +61,23 @@ const joker3_group = props.joker_3
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
+}
+
+#scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 8px;
+    display: block;
+}
+
+#scrollbar::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: #e7e7e7;
+    border: 1px solid #cacaca;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+#scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #363636;
 }
 </style>

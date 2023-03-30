@@ -5,3 +5,7 @@
 .v-field__input input {
     display: none;
 }
+
+*::-webkit-scrollbar {
+    display: none;
+}
