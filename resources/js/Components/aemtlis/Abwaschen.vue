@@ -12,9 +12,9 @@ function animate() {
 </script>
 
 <template>
-    <div class="m-4 relative">
-        <div id="abwaschen_animate" class="mb-4 bg opacity-0 p-2">
-            <div v-if="group.name">
+    <div class="m-4 relative flex flex-row-reverse lg:block">
+        <div id="abwaschen_animate" class="ml-4 lg:mb-0 lg:mb-4 bg opacity-0 p-2">
+            <div v-if="group.name" class="flex-grow-1">
                 <p class="font-bold">{{ group.name }}</p>
                 <p
                     class="text-center"
@@ -23,9 +23,9 @@ function animate() {
                     {{ participant.name }}
                 </p>
             </div>
-            <div v-else class="font-bold">{{ group }}</div>
+            <div v-else class="font-bold flex-grow-1">{{ group }}</div>
         </div>
-        <Geschirr_Sauber class="mx-auto" @click="animate()" />
+        <Geschirr_Sauber class="lg:mx-auto h-16 w-16 lg:h-40 lg:w-40" @click="animate()" />
     </div>
 </template>
 
