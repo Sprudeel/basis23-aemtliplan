@@ -13,11 +13,14 @@ function animate() {
 </script>
 
 <template>
-    <div class="h-40 m-4 relative flex lg:block">
-        <Joker class="lg:mx-auto h-16 w-16 lg:h-40 lg:w-40" @click="animate()" />
+    <div class="h-40 m-4 relative flex lg:block min-w-screen">
+        <Joker
+            class="lg:mx-auto h-24 w-24 self-center lg:h-40"
+            @click="animate()"
+        />
         <div
             :id="'joker' + props.id + '_animate'"
-            class="ml-4 lg:mb-0 lg:mb-4 bg opacity-0 p-2"
+            class="ml-4 lg:mb-4 bg flex-1 opacity-0 p-2"
         >
             <div v-if="group.name" class="flex-grow-1">
                 <p class="font-bold">{{ group.name }}</p>
