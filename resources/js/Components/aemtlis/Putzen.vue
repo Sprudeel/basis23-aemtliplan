@@ -4,16 +4,11 @@ import Putzen from "@/Components/svg/Putzen.vue";
 const props = defineProps({
     group: Object,
 });
-
-function animate() {
-    const element = document.getElementById("putzen_animate");
-    element.classList.add("woosh");
-}
 </script>
 
 <template>
-    <div class="m-4 relativ flex flex-row-reverse lg:block">
-        <div id="putzen_animate" class="ml-4 lg:mb-0 lg:mb-4 bg opacity-0 p-2">
+    <div class="m-4 relativ flex gap-4 lg:flex-col min-w-screen">
+        <div class="ml-4 lg:mb-4 bg flex-1 opacity-0 p-2 woosh">
             <div v-if="group.name" class="flex-grow-1">
                 <p class="font-bold">{{ group.name }}</p>
                 <p
@@ -25,22 +20,24 @@ function animate() {
             </div>
             <div v-else class="font-bold flex-grow-1">{{ group }}</div>
         </div>
-        <Putzen class="lg:mx-auto h-16 w-16 lg:h-40 lg:w-40" @click="animate()" />
+        <Putzen
+            class="h-32 w-32 lg:h-40 sm:order-first lg:order-1 lg:w-40 lg:mx-auto"
+        />
     </div>
 </template>
 
 <style scoped>
 .bg {
-    background: rgba(255, 255, 255, 0.21);
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(1.5px);
-    -webkit-backdrop-filter: blur(1.5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 .woosh {
     animation-name: woosh;
-    animation-duration: 1s;
+    animation-duration: 2s;
     animation-fill-mode: forwards;
 }
 
