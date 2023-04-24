@@ -16,6 +16,7 @@ const props = defineProps({
                 <p
                     class="text-center"
                     v-for="participant in group.participants"
+                    v-bind:key="participant.id"
                 >
                     {{ participant.name }}
                 </p>

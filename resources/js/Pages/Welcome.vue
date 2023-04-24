@@ -14,29 +14,17 @@ const props = defineProps({
     joker_3: Object,
 });
 
-const abwaschen_group = props.abwaschen
-    ? props.abwaschen.group
-    : "keine Gruppe zugeteilt";
+const abwaschen_group = props.abwaschen.group ?? "keine Gruppe zugeteilt";
 
-const putzen_group = props.putzen
-    ? props.putzen.group
-    : "keine Gruppe zugeteilt";
+const putzen_group = props.putzen.group ?? "keine Gruppe zugeteilt";
 
-const tischen_group = props.tischen
-    ? props.tischen.group
-    : "keine Gruppe zugeteilt";
+const tischen_group = props.tischen.group ?? "keine Gruppe zugeteilt";
 
-const joker1_group = props.joker_1
-    ? props.joker_1.group
-    : "keine Gruppe zugeteilt";
+const joker1_group = props.joker_1.group ?? "keine Gruppe zugeteilt";
 
-const joker2_group = props.joker_2
-    ? props.joker_2.group
-    : "keine Gruppe zugeteilt";
+const joker2_group = props.joker_2.group ?? "keine Gruppe zugeteilt";
 
-const joker3_group = props.joker_3
-    ? props.joker_3.group
-    : "keine Gruppe zugeteilt";
+const joker3_group = props.joker_3.group ?? "keine Gruppe zugeteilt";
 </script>
 
 <template>
