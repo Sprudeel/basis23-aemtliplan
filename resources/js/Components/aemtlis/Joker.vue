@@ -8,20 +8,19 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="m-4 relative flex lg:block min-w-screen">
-        <Joker class="lg:mx-auto h-32 w-32 self-center lg:h-40 lg:w-40" />
-        <div class="ml-4 lg:mb-4 bg flex-1 opacity-0 p-2 woosh">
-            <div v-if="group.name" class="flex-grow-1">
-                <p class="font-bold">{{ group.name }}</p>
+    <div class="flex lg:flex-col gap-4">
+        <Joker class="h-20 w-20 lg:h-40 lg:w-40 self-center" />
+        <div class="bg flex-col flex-1 opacity-0 p-2 woosh">
+            <div v-if="group.name" class="text-center">
+                <p class="font-bold text-lg lg:text-2xl lg:mb-2">{{ group.name }}</p>
                 <p
-                    class="text-center"
                     v-for="participant in group.participants"
                     v-bind:key="participant.id"
                 >
                     {{ participant.name }}
                 </p>
             </div>
-            <div v-else class="font-bold flex-grow-1">{{ group }}</div>
+            <div v-else class="font-bold flex-grow-1 text-lg lg:text-2xl">{{ group }}</div>
         </div>
     </div>
 </template>

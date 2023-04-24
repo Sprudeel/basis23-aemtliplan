@@ -7,22 +7,22 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="m-4 relativ flex gap-4 lg:flex-col min-w-screen">
-        <div class="ml-4 lg:mb-4 bg flex-1 opacity-0 p-2 woosh">
-            <div v-if="group.name" class="flex-grow-1">
-                <p class="font-bold">{{ group.name }}</p>
+    <div class="flex lg:flex-col-reverse gap-4">
+        <Tischen
+            class="h-20 w-20 lg:h-40 lg:w-40 self-center"
+        />
+        <div class="bg flex-col flex-1 opacity-0 p-2 woosh">
+            <div v-if="group.name" class="text-center">
+                <p class="font-bold text-lg lg:text-2xl lg:mb-2">{{ group.name }}</p>
                 <p
-                    class="text-center"
                     v-for="participant in group.participants"
+                    v-bind:key="participant.id"
                 >
                     {{ participant.name }}
                 </p>
             </div>
-            <div v-else class="font-bold flex-grow-1">{{ group }}</div>
+            <div v-else class="font-bold flex-grow-1 text-lg lg:text-2xl">{{ group }}</div>
         </div>
-        <Tischen
-            class="h-32 w-32 lg:h-40 sm:order-first lg:order-1 lg:w-40 lg:mx-auto"
-        />
     </div>
 </template>
 

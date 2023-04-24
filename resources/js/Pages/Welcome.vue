@@ -32,17 +32,17 @@ const joker3_group = props.joker_3.group ?? "keine Gruppe zugeteilt";
 
     <div
         id="scrollbar"
-        class="bg h-screen top-0 left-0 bottom-0 overflow-auto lg:overflow-x-scroll lg:overflow-y-hidden"
+        class="bg"
     >
         <div
-            class="lg:h-screen lg:min-w-max min-w-max grid grid-cols-1 lg:grid-cols-3 grid-rows-6 lg:grid-rows-2 gap-4 p-8"
+            class="min-h-screen flex flex-col lg:grid grid-cols-1 lg:grid-cols-3 grid-rows-6 lg:grid-rows-2 gap-4 p-4 lg:p-8"
         >
-            <Joker :group="joker1_group" :id="1" />
-            <Joker :group="joker2_group" :id="2" />
-            <Joker :group="joker3_group" :id="3" />
-            <Putzen class="self-end" :group="putzen_group" />
-            <Abwaschen class="self-end" :group="abwaschen_group" />
-            <Tischen class="self-end" :group="tischen_group" />
+            <Joker class="lg:self-start" :group="joker1_group" :id="1" />
+            <Joker class="lg:self-start" :group="joker2_group" :id="2" />
+            <Joker class="lg:self-start" :group="joker3_group" :id="3" />
+            <Putzen class="lg:self-end" :group="putzen_group" />
+            <Abwaschen class="lg:self-end" :group="abwaschen_group" />
+            <Tischen class="lg:self-end" :group="tischen_group" />
         </div>
     </div>
 </template>
