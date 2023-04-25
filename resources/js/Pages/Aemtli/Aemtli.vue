@@ -12,7 +12,7 @@ const props = defineProps({
 function formatDate(dateString) {
     const date = new Date(dateString);
     // Then specify how you want your dates to be formatted
-    return new Intl.DateTimeFormat("default", { dateStyle: "long" }).format(
+    return new Intl.DateTimeFormat("default", { dateStyle: "short", timeStyle: "short" }).format(
         date
     );
 }
