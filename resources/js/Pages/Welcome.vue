@@ -14,29 +14,17 @@ const props = defineProps({
     joker_3: Object,
 });
 
-const abwaschen_group = props.abwaschen
-    ? props.abwaschen.group
-    : "keine Gruppe zugeteilt";
+const abwaschen_group = props.abwaschen.group ?? "keine Gruppe zugeteilt";
 
-const putzen_group = props.putzen
-    ? props.putzen.group
-    : "keine Gruppe zugeteilt";
+const putzen_group = props.putzen.group ?? "keine Gruppe zugeteilt";
 
-const tischen_group = props.tischen
-    ? props.tischen.group
-    : "keine Gruppe zugeteilt";
+const tischen_group = props.tischen.group ?? "keine Gruppe zugeteilt";
 
-const joker1_group = props.joker_1
-    ? props.joker_1.group
-    : "keine Gruppe zugeteilt";
+const joker1_group = props.joker_1.group ?? "keine Gruppe zugeteilt";
 
-const joker2_group = props.joker_2
-    ? props.joker_2.group
-    : "keine Gruppe zugeteilt";
+const joker2_group = props.joker_2.group ?? "keine Gruppe zugeteilt";
 
-const joker3_group = props.joker_3
-    ? props.joker_3.group
-    : "keine Gruppe zugeteilt";
+const joker3_group = props.joker_3.group ?? "keine Gruppe zugeteilt";
 </script>
 
 <template>
@@ -44,15 +32,17 @@ const joker3_group = props.joker_3
 
     <div
         id="scrollbar"
-        class="bg h-screen top-0 left-0 bottom-0 md:overflow-x-scroll overflow-y-hidden"
+        class="bg"
     >
-        <div class="h-screen min-w-max grid grid-cols-3 grid-rows-2 gap-4 p-8">
-            <Joker :group="joker1_group" :id="1" />
-            <Joker :group="joker2_group" :id="2" />
-            <Joker :group="joker3_group" :id="3" />
-            <Putzen class="self-end" :group="putzen_group" />
-            <Abwaschen class="self-end" :group="abwaschen_group" />
-            <Tischen class="self-end" :group="tischen_group" />
+        <div
+            class="min-h-screen flex flex-col lg:grid grid-cols-1 lg:grid-cols-3 grid-rows-6 lg:grid-rows-2 gap-4 p-4 lg:p-8"
+        >
+            <Joker class="lg:self-start" :group="joker1_group" :id="1" />
+            <Joker class="lg:self-start" :group="joker2_group" :id="2" />
+            <Joker class="lg:self-start" :group="joker3_group" :id="3" />
+            <Putzen class="lg:self-end" :group="putzen_group" />
+            <Abwaschen class="lg:self-end" :group="abwaschen_group" />
+            <Tischen class="lg:self-end" :group="tischen_group" />
         </div>
     </div>
 </template>

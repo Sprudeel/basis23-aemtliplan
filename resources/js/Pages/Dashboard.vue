@@ -69,6 +69,7 @@ function changeGroup(group, aemtli) {
 
                     <div
                         v-for="aemtli in props.aemtlis"
+                        v-bind:key="aemtli.name"
                         class="border rounded p-6 mx-2 my-4"
                     >
                         <h2 class="text-xl text-slate-600 mb-4">
