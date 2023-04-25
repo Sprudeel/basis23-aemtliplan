@@ -16,8 +16,8 @@ function animate() {
         <Geschirr_Sauber
             class="h-20 w-20 lg:h-40 lg:w-40 self-center"
         />
-        <div class="bg flex items-center flex-1 opacity-0 p-2 woosh">
-            <div v-if="group.name">
+        <div class="bg flex-col flex-1 opacity-0 p-2 woosh">
+            <div v-if="group.name" class="text-center">
                 <p class="font-bold text-lg lg:text-2xl lg:mb-3">{{ group.name }}</p>
                 <p
                     v-for="participant in group.participants"
