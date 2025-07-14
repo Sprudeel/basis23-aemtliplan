@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Sueno',
             'email' => 'aemtli@risola25.com',
             'email_verified_at' => now(),
-            'password' => 'Hash::make('suenobuenorisola25')
+            'password' => 'Hash::make('suenobuenorisola25')'
         ]);
     }
 }
